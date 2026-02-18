@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 async function registerRoute(req, res) {
   const { username, email, password, bio, profile_img } = req.body;
-  
+
   const isUserAlreadyExists = await userModel.findOne({
     $or: [{ username }, { email }],
   });
@@ -18,7 +18,7 @@ async function registerRoute(req, res) {
     });
   }
 
-  const hash =await  bcrypt.hash(password,10 );
+  const hash = await bcrypt.hash(password, 10);
 
   const user = await userModel.create({
     username,
@@ -30,6 +30,7 @@ async function registerRoute(req, res) {
   const token = jwt.sign(
     {
       id: user._id,
+      username: user.username,
     },
     process.env.jwt_secret,
     { expiresIn: "1d" },
@@ -49,9 +50,6 @@ async function registerRoute(req, res) {
   });
 }
 
-
-
-
 async function loginRoute(req, res) {
   const { username, email, password } = req.body;
 
@@ -65,9 +63,7 @@ async function loginRoute(req, res) {
     });
   }
 
-
-
-  const isPasswordVaild = await bcrypt.compare(password, user.password)
+  const isPasswordVaild = await bcrypt.compare(password, user.password);
 
   if (!isPasswordVaild) {
     return res.status(401).json({
@@ -77,6 +73,7 @@ async function loginRoute(req, res) {
   const token = jwt.sign(
     {
       id: user._id,
+      username: user.username,
     },
     process.env.jwt_secret,
     { expiresIn: "1d" },
@@ -91,5 +88,5 @@ async function loginRoute(req, res) {
 
 module.exports = {
   registerRoute,
-  loginRoute
-}
+  loginRoute,
+};

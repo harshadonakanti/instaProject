@@ -8,10 +8,6 @@ const imgKit = new ImageKit({
 });
 
 const postController = async (req, res) => {
- 
-
-
-
   const file = await imgKit.files.upload({
     file: await toFile(Buffer.from(req.file.buffer), "file"),
     fileName: "test",
@@ -31,39 +27,38 @@ const postController = async (req, res) => {
 };
 
 const getPostController = async (req, res) => {
- 
-
   // let userId = decoded.id
 
   let posts = await postModel.find({
-    user:req.user.id // before user:decoded.id
-  })
+    user: req.user.id, // before user:decoded.id
+  });
 
   res.status(200).json({
-    message:"data fetched !!!!!!!!!",
-    posts
-  })
-
+    message: "data fetched !!!!!!!!!",
+    posts,
+  });
 };
 
-const getPostDetails = async(req, res)=>{
+const getPostDetails = async (req, res) => {
+  const postId = req.params.postId;
+  const post = await postModel.findById(postId);
 
-
-  const postId= req.params.postId
-  const post = await postModel.findOne({postId})
-
-  if(!post){
+  if (!post) {
     return res.status(404).json({
       message: "Post not Found",
     });
   }
-  const isValidUser = req.user.id === postId  // before user:decoded.id
-  if(!isValidUser){
-    return res.status(401).json({
-      message: "",
+  const isValidUser = req.user.id === post.user.toString(); // before user:decoded.id
+  if (!isValidUser) {
+    return res.status(403).json({
+      message: "Forbidden Content",
     });
   }
-  
 
-}
-module.exports = { postController, getPostController , getPostDetails};
+  return res.status(200).json({
+    message: "Post Fetched Successfully",
+    post
+  });
+
+};
+module.exports = { postController, getPostController, getPostDetails };

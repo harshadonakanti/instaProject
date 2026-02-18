@@ -22,6 +22,6 @@ postRouter.get("/", identifyUser,getPostController);
   to the user that the request come from
 */
 
-postRouter.get('/api/posts/details/:postId',identifyUser, getPostDetails)
+postRouter.get('/details/:postId',identifyUser, getPostDetails)
 
 module.exports = postRouter;
