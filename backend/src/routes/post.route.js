@@ -2,10 +2,12 @@ const express = require("express");
 const {
   postController,
   getPostController,
-  getPostDetails,
+  getPostDetailsController,
 } = require("../controllers/post.controller.js");
 const multer = require("multer");
 const identifyUser = require("../middlewares/auth.middleware.js");
+const likeController = require("../controllers/like.controller.js");
+
 const upload = multer({ storage: multer.memoryStorage() });
 
 const postRouter = express.Router();
@@ -22,6 +24,8 @@ postRouter.get("/", identifyUser,getPostController);
   to the user that the request come from
 */
 
-postRouter.get('/details/:postId',identifyUser, getPostDetails)
+postRouter.get('/details/:postId',identifyUser, getPostDetailsController)
+
+postRouter.post("/likes/:postid", identifyUser, likeController)
 
 module.exports = postRouter;

@@ -39,7 +39,7 @@ const getPostController = async (req, res) => {
   });
 };
 
-const getPostDetails = async (req, res) => {
+const getPostDetailsController = async (req, res) => {
   const postId = req.params.postId;
   const post = await postModel.findById(postId);
 
@@ -61,4 +61,4 @@ const getPostDetails = async (req, res) => {
   });
 
 };
-module.exports = { postController, getPostController, getPostDetails };
+module.exports = { postController, getPostController, getPostDetailsController };
