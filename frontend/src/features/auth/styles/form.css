@@ -1,0 +1,49 @@
+main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form-container form input,
+.form-container form button {
+  border: none;
+  outline: none;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+}
+.form-container form input input::-moz-placeholder, .form-container form button input::-moz-placeholder {
+  font-size: 1.2rem; /* placeholder size */
+  color: #888; /* optional */
+}
+.form-container form input input::placeholder,
+.form-container form button input::placeholder {
+  font-size: 1.2rem; /* placeholder size */
+  color: #888; /* optional */
+}
+.form-container form button {
+  background-color: #4aa39d;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+.form-container form button:active {
+  scale: 0.95;
+}
+.form-container .toggleAuthForm {
+  color: #e37979;
+  text-decoration: none;
+  font-weight: 500;
+}/*# sourceMappingURL=form.css.map */
