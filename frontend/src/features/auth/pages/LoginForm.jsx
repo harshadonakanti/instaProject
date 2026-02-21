@@ -1,22 +1,33 @@
 import "../styles/form.scss";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import RegisterForm from "./RegisterForm";
 import axios from "axios";
 import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
+  
 
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+const {handleLogin, loading} = useAuth()
+const navigate = useNavigate()
+
+if(loading){
+  return <p>loading.....</p>
+}
+
+
 
   function handlerSubmit(e) {
     e.preventDefault();
 
-    axios.post('http://localhost:3000/api/auth/login',{
-      username,
-      password
-    },{
-      withCredentials:true
+    handleLogin(username, password)
+    .then((res)=>{
+      console.log(res);
+      navigate('/')
+      
     })
 
     setUsername("");
@@ -38,6 +49,7 @@ const LoginForm = () => {
             type="text"
             placeholder="Enter the Username"
             name="username"
+            required
           />
           <input
             value={password}
@@ -45,13 +57,14 @@ const LoginForm = () => {
             type="password"
             placeholder="Enter the Password"
             name="password"
+            required
           />
           <button>Login</button>
         </form>
         <p>
           Don't Have An Account?{" "}
           <Link className="toggleAuthForm" to="/register">
-            Login
+            Create an Account
           </Link>
         </p>
       </div>

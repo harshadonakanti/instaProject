@@ -22,6 +22,7 @@ main {
   outline: none;
   padding: 1rem 2rem;
   border-radius: 1rem;
+  font-size: 1rem;
 }
 .form-container form input input::-moz-placeholder, .form-container form button input::-moz-placeholder {
   font-size: 1.2rem; /* placeholder size */
@@ -45,5 +46,5 @@ main {
 .form-container .toggleAuthForm {
   color: #e37979;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
 }/*# sourceMappingURL=form.css.map */

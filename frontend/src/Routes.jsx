@@ -7,6 +7,8 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
     <Routes>
+    <Route path='/' element={<h1>This is homepage </h1>}/>
+
     <Route path='/login' element={<LoginForm />}/>
     <Route path='/register' element={<RegisterForm />}/>
 

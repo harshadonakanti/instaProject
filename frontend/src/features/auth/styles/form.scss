@@ -21,6 +21,7 @@ main {
       outline: none;
       padding: 1rem 2rem;
       border-radius: 1rem;
+      font-size: 1rem;
 
       input::placeholder {
         font-size: 1.2rem; /* placeholder size */
@@ -41,6 +42,6 @@ main {
   .toggleAuthForm {
     color: #e37979;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 700;
   }
 }

@@ -1,5 +1,5 @@
 const postModel = require("../models/post.model");
-const likeModel = require("../routes/like.model");
+const likeModel = require("../models/like.model");
 
 const likeController = async (req, res) => {
   const username = req.user.username;
