@@ -1,0 +1,40 @@
+@mixin flex-col($gap: 0rem) {
+  display: flex;
+  flex-direction: column;
+gap: $gap;
+}
+
+main {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .form-container {
+    @include flex-col(0.8rem);
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+  }
+
+  form {
+    @include flex-col(0.6rem);
+    
+    input {
+      border: none;
+      outline: none;
+      padding: 1rem 5rem;
+      font-size: 1rem;
+      border-radius: 1rem;
+    }
+  }
+
+  .toggleAuthForm {
+    color: rgb(197, 69, 95);
+    text-decoration: none;
+    font-size: 1.1rem;
+  }
+}

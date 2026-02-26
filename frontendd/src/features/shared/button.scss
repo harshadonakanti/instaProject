@@ -1,0 +1,19 @@
+.btn {
+  border: none;
+  outline: none;
+  padding: 0.4rem 1.3rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-align: center;
+
+  &:active {
+    transform: scale(0.95);
+  }
+  &.primary-btn {
+    background-color: #564486;
+    color: #fff;
+  }
+}

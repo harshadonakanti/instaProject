@@ -1,0 +1,65 @@
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import useAuth from "../hooks/useAuth";
+
+const Register = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { loading, handleRegister } = useAuth();
+const navigate= useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleRegister(username, email, password);
+    navigate("/")
+  };
+
+  if (loading) {
+    return <h1>Loading.........</h1>;
+  }
+
+  return (
+    <>
+      <main>
+        <div className="form-container">
+          <h1>Register</h1>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Enter the username"
+              required
+            />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="enter the Email"
+              required
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter the Password"
+              required
+            />
+
+            <button className="btn primary-btn">Register</button>
+          </form>
+          <p>
+            Already Have an Account?{" "}
+            <Link className="toggleAuthForm" to="/login">
+              Login{" "}
+            </Link>
+          </p>
+        </div>
+      </main>
+    </>
+  );
+};
+
+export default Register;

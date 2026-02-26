@@ -1,0 +1,110 @@
+.feed-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .feed {
+    max-width: 350px;
+    width: 100%;
+    padding: 0.7rem;
+
+    .posts {
+      width: 100%;
+    }
+
+    .post {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      background-color: #444;
+      padding-inline: 0.5rem;
+      padding-block: 1.2rem;
+      margin-top: 0.8rem;
+      border-radius: 1rem;
+
+      .user {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        .img-wrapper {
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 4px solid rgba(255, 255, 255, 0);
+          background: conic-gradient(
+              from 60deg,
+              crimson,
+              purple,
+              orange,
+              crimson,
+              purple,
+              orange
+            )
+            border-box;
+        }
+        img {
+          width: 4rem;
+          aspect-ratio: 1/1;
+          border-radius: 50%;
+        }
+
+        p {
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
+      }
+
+      .icons {
+        display: flex;
+        justify-content: space-between;
+
+        .left {
+          display: flex;
+          gap: 0.5rem;
+          i {
+            width: 1rem;
+            aspect-ratio: 1/1;
+            color: white;
+            background-color: transparent;
+            font-size: 1.4rem;
+            cursor: pointer;
+          }
+          .like {
+          color: crimson;
+          }
+
+          button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+          }
+        }
+
+        .right {
+          i {
+            width: 1rem;
+            aspect-ratio: 1/1;
+            color: white;
+            background-color: transparent;
+            font-size: 1.4rem;
+          }
+          button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: transparent;
+          }
+        }
+      }
+
+      img {
+        border-radius: 2rem;
+        width: 100%;
+      }
+    }
+  }
+}

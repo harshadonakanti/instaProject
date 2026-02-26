@@ -1,34 +1,24 @@
 import "../styles/form.scss";
 import { Link, useNavigate } from "react-router";
-import RegisterForm from "./RegisterForm";
-import axios from "axios";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 
 const LoginForm = () => {
-  
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-const {handleLogin, loading} = useAuth()
-const navigate = useNavigate()
+  const { handleLogin, loading } = useAuth();
+  const navigate = useNavigate();
 
-if(loading){
-  return <p>loading.....</p>
-}
-
-
-
+  if (loading) {
+    return <p>loading.....</p>;
+  }
   function handlerSubmit(e) {
     e.preventDefault();
 
-    handleLogin(username, password)
-    .then((res)=>{
-      console.log(res);
-      navigate('/')
-      
-    })
+    handleLogin(username, password).then((res) => {
+      navigate("/");
+    });
 
     setUsername("");
     setPassword("");

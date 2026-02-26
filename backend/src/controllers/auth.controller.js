@@ -55,7 +55,7 @@ async function loginRoute(req, res) {
 
   const user = await userModel.findOne({
     $or: [{ username: username }, { email: email }],
-  });
+  }).select("+password")
 
   if (!user) {
     return res.status(404).json({

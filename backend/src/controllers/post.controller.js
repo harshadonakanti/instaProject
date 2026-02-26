@@ -1,7 +1,7 @@
 const ImageKit = require("@imagekit/nodejs");
 const { toFile } = require("@imagekit/nodejs");
-const jwt = require("jsonwebtoken");
 const postModel = require("../models/post.model.js");
+const likeModel = require("../models/like.model.js");
 
 const imgKit = new ImageKit({
   privateKey: process.env.imgkit_private_Key,
@@ -14,11 +14,13 @@ const postController = async (req, res) => {
     folder: "instaProject",
   });
 
-  const post = await postModel.create({
+  let post = await postModel.create({
     caption: req.body.caption,
     img_url: file.url,
     user: req.user.id, // before user:decoded.id
   });
+
+  // post = await post.populate("user");
 
   res.status(201).json({
     message: "post created Successfully",
@@ -57,8 +59,33 @@ const getPostDetailsController = async (req, res) => {
 
   return res.status(200).json({
     message: "Post Fetched Successfully",
-    post
+    post,
   });
-
 };
-module.exports = { postController, getPostController, getPostDetailsController };
+
+const getFeedController = async (req, res) => {
+  const user = req.user;
+
+  const posts = await Promise.all(
+    (await postModel.find().sort({_id:-1}).populate("user").lean()).map(async (post) => {
+      const isLiked = await likeModel.findOne({
+        user: user.username,
+        post: post._id,
+      });
+      post.isLiked = !!isLiked;
+      return post;
+    }),
+  );
+
+  res.status(200).json({
+    message: "post feteched Suceesfully",
+    posts,
+  });
+};
+
+module.exports = {
+  postController,
+  getPostController,
+  getPostDetailsController,
+  getFeedController,
+};
